@@ -50,4 +50,8 @@ public class TrainControllerImpl implements TrainController {
 		speedLimit *=2; 	
 	}
 
+	public int getSpeedLimit(){
+		return speedLimit;
+	}
+
 }

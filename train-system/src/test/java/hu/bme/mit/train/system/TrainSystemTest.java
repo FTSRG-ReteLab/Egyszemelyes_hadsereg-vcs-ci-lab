@@ -49,6 +49,10 @@ public class TrainSystemTest {
 		controller.followSpeed();
 		Assert.assertEquals(0, controller.getReferenceSpeed());
 	}
-
-	
+	@Test
+	public void DoubleSpeedLimit(){
+		controller.setSpeetLimit(5)
+		controller.doubleSpeedLimit();
+		Assert.assertEquals(10, controller.getSpeedLimit());	
+	}
 }
