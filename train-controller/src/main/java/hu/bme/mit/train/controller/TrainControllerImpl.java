@@ -2,8 +2,12 @@ package hu.bme.mit.train.controller;
 
 import hu.bme.mit.train.interfaces.TrainController;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class TrainControllerImpl implements TrainController {
 
+    private static final Logger LOGGER = Logger.getLogger("TrainControllerImpl");
     private int step = 0;
     private int referenceSpeed = 0;
     private int speedLimit = 0;
@@ -43,13 +47,18 @@ public class TrainControllerImpl implements TrainController {
 
     @Override
     public void setJoystickPosition(int joystickPosition) {
+        this.step = joystickPosition;
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Interrupted!", e);
+            // Restore interrupted state...
+            Thread.currentThread().interrupt();
         }
-        this.step = joystickPosition;
+
         followSpeed();
+
     }
 
     public void doubleSpeedLimit() {
